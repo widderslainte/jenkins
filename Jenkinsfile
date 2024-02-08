@@ -7,19 +7,28 @@ pipeline {
         DB_ENGINE    = 'sqlite'
     }
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
                 sh 'python --version'
+            }
+        }
+        stage('Test') {
+            steps {
                 echo "Database engine is ${DB_ENGINE}"
                 echo "DISABLE_AUTH is ${DISABLE_AUTH}"
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo "Deploying"
             }
         }
     }
 
     post {
-        always {
-            sh 'printenv'
-        }
+        // always {
+        //     sh 'printenv'
+        // }
         success {
             echo "Success"
         }

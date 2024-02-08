@@ -12,8 +12,22 @@ pipeline {
                 sh 'python --version'
                 echo "Database engine is ${DB_ENGINE}"
                 echo "DISABLE_AUTH is ${DISABLE_AUTH}"
-                sh 'printenv'
             }
+        }
+    }
+
+    post {
+        always {
+            sh 'printenv'
+        }
+        success {
+            echo "Success"
+        }
+        unstable {
+            echo "Unstable"
+        }
+        failure {
+            echo "Failed :("
         }
     }
 }
